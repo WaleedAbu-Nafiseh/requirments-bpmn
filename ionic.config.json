@@ -1,0 +1,7 @@
+{
+  "name": "requirments-bpmn",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
