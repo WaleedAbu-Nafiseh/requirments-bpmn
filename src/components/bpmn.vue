@@ -1,6 +1,6 @@
 <template>
   <div ref="container" class="vue-bpmn-diagram-container"></div>
-  <button class="save" @click="save">save </button>
+  <button class="save" @click="save">save</button>
 </template>
 
 <script>
@@ -20,7 +20,6 @@ export default {
   data: function () {
     return {
       diagramXML: null,
-      
     };
   },
   mounted: function () {
@@ -44,6 +43,26 @@ export default {
       } else {
         self.$emit("shown", warnings);
       }
+      var eventBus = self.bpmnViewer.get("eventBus");
+
+      // you may hook into any of the following events
+      var events = [
+        "element.hover",
+        "element.out",
+        "element.click",
+        "element.dblclick",
+        "element.mousedown",
+        "element.mouseup",
+      ];
+
+      events.forEach(function (event) {
+        eventBus.on(event, function (e) {
+          // e.element = the model element
+          // e.gfx = the graphical element
+
+          console.log(event, "on", e.element.id);
+        });
+      });
 
       self.bpmnViewer.get("canvas").zoom("fit-viewport");
     });
