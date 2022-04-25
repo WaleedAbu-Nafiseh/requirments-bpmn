@@ -21,7 +21,8 @@
     "bpmn-js": "^9.0.3",
     "core-js": "^3.6.5",
     "vue": "^3.2.21",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "waleed-bpmn-js": "^9.0.3"
   },
   "devDependencies": {
     "@capacitor/cli": "3.5.0",

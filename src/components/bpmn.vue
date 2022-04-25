@@ -1,9 +1,10 @@
 <template>
   <div ref="container" class="vue-bpmn-diagram-container"></div>
+  <button class="save" @click="save">save </button>
 </template>
 
 <script>
-import BpmnJS from "bpmn-js/dist/bpmn-navigated-viewer.production.min.js";
+import BpmnModeler from "waleed-bpmn-js/lib/Modeler";
 
 export default {
   name: "VueBpmn",
@@ -19,6 +20,7 @@ export default {
   data: function () {
     return {
       diagramXML: null,
+      
     };
   },
   mounted: function () {
@@ -31,7 +33,7 @@ export default {
       },
       this.options
     );
-    this.bpmnViewer = new BpmnJS(_options);
+    this.bpmnViewer = new BpmnModeler(_options);
 
     this.bpmnViewer.on("import.done", function (event) {
       var error = event.error;
@@ -63,6 +65,11 @@ export default {
     },
   },
   methods: {
+    save: function () {
+      this.bpmnViewer.saveXML().then((xml) => {
+        console.log(xml.xml);
+      });
+    },
     fetchDiagram: function (url) {
       var self = this;
 
